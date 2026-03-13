@@ -1,20 +1,48 @@
-<h2>Students</h2>
+@if (!isAddView) {
+    <h2>Students</h2>
+    <button type="button" class="btn btn-primary mb-3" (click)="showAddView()">
+        Add Student
+    </button>
 
-<table class="table table-striped table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Grade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students">
-      <td>{{ student.id }}</td>
-      <td>{{ student.name }}</td>
-      <td>{{ student.age }}</td>
-      <td>{{ student.grade }}</td>
-    </tr>
-  </tbody>
-</table>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (student of students; track student.id) {
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.grade }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    <h2>Add Student</h2>
+    <form (ngSubmit)="addStudent()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="newStudent.name" />
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input id="age" name="age" type="number" class="form-control" [(ngModel)]="newStudent.age" />
+        </div>
+
+        <div class="mb-3">
+            <label for="grade" class="form-label">Grade</label>
+            <input id="grade" name="grade" type="text" maxlength="1" class="form-control" [(ngModel)]="newStudent.grade" />
+        </div>
+
+        <button type="submit" class="btn btn-success me-2">Save</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="showListView()">Cancel</button>
+    </form>
+}

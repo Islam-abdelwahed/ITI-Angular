@@ -1,0 +1,29 @@
+.student-wrapper {
+	max-width: 900px;
+	margin: 2rem auto;
+}
+
+.student-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.btn.active {
+	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.student-form {
+	max-width: 460px;
+	border: 1px solid #dee2e6;
+	border-radius: 0.5rem;
+	padding: 1rem;
+	background-color: #fff;
+}
