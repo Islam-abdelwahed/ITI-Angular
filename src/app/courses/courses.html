@@ -1,0 +1,42 @@
+<section class="courses-page">
+  <h2>Available Courses</h2>
+
+  <div class="filter-row">
+    <label for="category">Filter by Category:</label>
+    <select id="category" [(ngModel)]="selectedCategory">
+      @for (category of categories; track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="courses-grid">
+    @for (course of courses | categoryFilter: selectedCategory; track course.id) {
+      <article
+        class="course-card"
+        [ngClass]="{ 'is-full': course.seats === 0 }"
+        [style.backgroundColor]="course.seats > 0 && course.seats <= 2 ? '#fff3cd' : '#ffffff'"
+      >
+        <img [src]="course.Image" [alt]="course.title" width="320" height="180" />
+
+        <div class="course-content">
+          <h3>{{ course.title }}</h3>
+          <p><strong>Category:</strong> {{ course.category }}</p>
+          <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+          <p><strong>Price:</strong> ${{ course.price }}</p>
+          <p><strong>Seats Available:</strong> {{ course.seats }}</p>
+
+          @if (course.seats === 0) {
+            <p class="full-message">Course Full</p>
+          } @else if (course.seats <= 2) {
+            <p class="almost-full">Almost Full</p>
+          }
+
+          <button type="button" (click)="register(course)" [disabled]="course.seats === 0">
+            Register
+          </button>
+        </div>
+      </article>
+    }
+  </div>
+</section>
