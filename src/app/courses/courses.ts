@@ -3,15 +3,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Course } from '../models/course';
 import { CategoryFilterPipe } from '../pipes/category-filter.pipe';
+import { StringContainsPipe } from '../pipes/string-contains.pipe';
 
 @Component({
   selector: 'app-courses',
-  imports: [NgClass, FormsModule, CategoryFilterPipe],
+  imports: [NgClass, FormsModule, CategoryFilterPipe, StringContainsPipe],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Courses {
+  searchText = '';
   selectedCategory = 'All';
 
   categories = ['All', 'Programming', 'Design', 'Marketing', 'Business'];
@@ -68,6 +70,15 @@ export class Courses {
       category: 'Design',
     },
   ];
+
+  private containsPipe = new StringContainsPipe();
+
+  get filteredCourses(): Course[] {
+    const matchingTitles = new Set(
+      this.containsPipe.transform(this.courses.map(c => c.title), this.searchText)
+    );
+    return this.courses.filter(c => matchingTitles.has(c.title));
+  }
 
   register(course: Course): void {
     if (course.seats > 0) {

@@ -9,8 +9,10 @@
   margin-bottom: 1rem;
 }
 
-.filter-row select {
+.filter-row select,
+.filter-row input[type="text"] {
   min-width: 180px;
+  padding: 0.35rem 0.5rem;
 }
 
 .courses-grid {
