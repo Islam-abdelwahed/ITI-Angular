@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Course } from '../models/course';
+import { Course } from '../../models/course';
 import { CategoryFilterPipe } from '../pipes/category-filter.pipe';
 
 @Component({

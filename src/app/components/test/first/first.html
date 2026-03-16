@@ -1,0 +1,22 @@
+<p>first works!</p>
+<h1>
+    {{name|uppercase}}
+</h1>
+<h1>
+    {{d|date:'yyyy/MMMM/dd'|uppercase}}
+</h1>
+<h1>
+    {{x|power}}
+</h1>
+<ul>
+    @for (item of (names|arrFilter); track $index) {
+        <li>{{item}}</li>
+    }
+</ul>
+<input #t1 type="text">
+<button (click)="names.push(t1.value)">save</button>
+<ul>
+    @for (item of (names); track $index) {
+        <li>{{item}}</li>
+    }
+</ul>

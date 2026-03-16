@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 
-import { Student } from './student/student';
+import { Student } from './components/student/student';
 
 @Component({
   selector: 'app-root',
