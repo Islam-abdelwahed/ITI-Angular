@@ -1,1 +1,13 @@
-<app-products></app-products>
+<div class="mb-3 text-center">
+  <label for="" class="form-label">Categories</label>
+  <select class="form-select form-select-lg" name="categories" id="" [(ngModel)]="selectedCategoryId">
+    <option value="-1">all</option>
+    @for (item of categories; track item.id) {
+    <option [value]="item.id">{{item.name}}</option>
+    }
+
+  </select>
+
+
+</div>
+<app-products [selectedCategory] = "selectedCategoryId"></app-products>
