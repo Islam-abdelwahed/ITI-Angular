@@ -73,16 +73,37 @@ export class Courses {
 
   private containsPipe = new StringContainsPipe();
 
-  get filteredCourses(): Course[] {
-    const matchingTitles = new Set(
-      this.containsPipe.transform(this.courses.map(c => c.title), this.searchText)
-    );
-    return this.courses.filter(c => matchingTitles.has(c.title));
+  filteredCourses: Course[] = [];
+
+  filterCourses(): void {
+    let result = this.courses;
+
+
+    if (this.searchText.trim()) {
+      const matchingTitles = new Set(
+        this.containsPipe.transform(
+          this.courses.map(c => c.title),
+          this.searchText
+        )
+      );
+
+      result = result.filter(c => matchingTitles.has(c.title));
+    }
+
+
+    if (this.selectedCategory !== 'All') {
+      result = result.filter(c => c.category === this.selectedCategory);
+    }
+
+    this.filteredCourses = result;
   }
 
   register(course: Course): void {
     if (course.seats > 0) {
       course.seats -= 1;
     }
+  }
+  ngOnInit() {
+    this.filterCourses();
   }
 }

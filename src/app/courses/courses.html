@@ -3,12 +3,12 @@
 
   <div class="filter-row">
     <label for="search">Search Courses:</label>
-    <input id="search" type="text" placeholder="Search by title…" [(ngModel)]="searchText" />
+    <input id="search" type="text" placeholder="Search by title…" [(ngModel)]="searchText"  (ngModelChange)="filterCourses()" />
   </div>
 
   <div class="filter-row">
     <label for="category">Filter by Category:</label>
-    <select id="category" [(ngModel)]="selectedCategory">
+    <select id="category" [(ngModel)]="selectedCategory" (change)="filterCourses()">
       @for (category of categories; track category) {
         <option [value]="category">{{ category }}</option>
       }
