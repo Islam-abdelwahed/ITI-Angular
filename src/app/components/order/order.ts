@@ -12,6 +12,7 @@ import { ICategory } from '../../models/icategory';
 export class Order {
 
   selectedCategoryId: number = 0;
+  totalPrice: number = 0;
   categories: ICategory[];
   constructor() {
     this.categories = [
@@ -28,5 +29,9 @@ export class Order {
         name: "Stationery"
       }
     ];
+  }
+
+  onTotalPriceChanged(price: number) {
+    this.totalPrice = price;
   }
 }

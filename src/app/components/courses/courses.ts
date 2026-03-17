@@ -2,11 +2,10 @@ import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Course } from '../../models/course';
-import { CategoryFilterPipe } from '../pipes/category-filter.pipe';
 
 @Component({
   selector: 'app-courses',
-  imports: [NgClass, FormsModule, CategoryFilterPipe],
+  imports: [NgClass, FormsModule],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

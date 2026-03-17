@@ -10,4 +10,5 @@
 
 
 </div>
-<app-products [selectedCategory] = "selectedCategoryId"></app-products>
+<h3 class="text-center">Total Price: {{totalPrice}}</h3>
+<app-products [selectedCategoryId]="selectedCategoryId" (totalPriceChanged)="onTotalPriceChanged($event)"></app-products>

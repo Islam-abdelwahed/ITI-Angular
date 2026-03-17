@@ -1,4 +1,4 @@
-import { Component, computed, Input, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, input, output, Signal, signal, WritableSignal } from '@angular/core';
 import { IProduct } from '../../models/iproduct';
 import { ICategory } from '../../models/icategory';
 import { CommonModule } from '@angular/common';
@@ -12,19 +12,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class Products {
 
- @Input() selectedCategoryId = signal(2)
+ selectedCategoryId = input<number>(-1);
 
   showProducts = computed(() => {
-    if (this.selectedCategoryId() == -1)
+    if (this.selectedCategoryId() === -1)
       return this.products();
-    let res: IProduct[] = [];
-    this.products().forEach(item => {
-      if (item.catId == this.selectedCategoryId()) {
-        res.push(item);
-      }
-    });
-    return res;
-  })
+
+    return this.products().filter(
+      item => item.catId === this.selectedCategoryId()
+    );
+  });
+
 
   products = signal([
     {
@@ -79,16 +77,31 @@ export class Products {
     }
   ]);
 
- 
+  categories: ICategory[];
   
   constructor() {
 
-    
+    this.categories = [
+      {
+        id: 1,
+        name: "Electronics"
+      },
+      {
+        id: 2,
+        name: "Clothing"
+      },
+      {
+        id: 3,
+        name: "Stationery"
+      }
+    ];
 
 
   }
   totalPrice = 0
+  totalPriceChanged = output<number>();
   add(n: number, p: number) {
     this.totalPrice += n * p;
+    this.totalPriceChanged.emit(this.totalPrice);
   }
 }

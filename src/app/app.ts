@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { Order } from './components/order/order';
 
-import { Student } from './components/student/student';
+// import { Student } from './components/student/student';
 
 @Component({
   selector: 'app-root',
-  imports: [ Student],
+  imports: [Order],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
