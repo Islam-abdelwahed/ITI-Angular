@@ -1,0 +1,31 @@
+<div class="table-wrapper">
+    <table class="student-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Grade</th>
+          <th>GPA</th>
+          <th>Degree</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of students; track student.id) {
+          <tr class="student-row">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.grade }}</td>
+            <td>{{ student.gpa }}</td>
+            <td>{{ getDegree(student.gpa) }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="summary">
+    <p>Total Students: <strong>{{ students.length }}</strong></p>
+  </div>

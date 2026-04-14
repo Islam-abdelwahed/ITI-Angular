@@ -1,0 +1,77 @@
+<div class="header">
+    <h1>Student Management</h1>
+
+    <form class="add-student-form" (ngSubmit)="addStudent()">
+      <div class="flex justify-center">
+        <div class="flex flex-col gap-2 input-block">
+          <label for="studentName">Student Name</label>
+          <input
+            pInputText
+            id="studentName"
+            type="text"
+            name="name"
+            aria-describedby="student-name-help"
+            [(ngModel)]="newStudent.name"
+            required
+          />
+          <small id="student-name-help">Enter full student name.</small>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="flex flex-col gap-2 input-block">
+          <label for="studentEmail">Student Email</label>
+          <input
+            pInputText
+            id="studentEmail"
+            type="email"
+            name="email"
+            aria-describedby="student-email-help"
+            [(ngModel)]="newStudent.email"
+            required
+          />
+          <small id="student-email-help">Use school email format.</small>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="flex flex-col gap-2 input-block">
+          <label for="studentGrade">Grade</label>
+          <input
+            pInputText
+            id="studentGrade"
+            type="text"
+            name="grade"
+            aria-describedby="student-grade-help"
+            [(ngModel)]="newStudent.grade"
+            required
+          />
+          <small id="student-grade-help">Example: Grade 10</small>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="flex flex-col gap-2 input-block">
+          <label for="studentGpa">GPA</label>
+          <input
+            pInputText
+            id="studentGpa"
+            type="number"
+            name="gpa"
+            min="0"
+            max="4"
+            step="0.1"
+            aria-describedby="student-gpa-help"
+            [(ngModel)]="newStudent.gpa"
+            required
+          />
+          <small id="student-gpa-help">Enter value from 0 to 4.</small>
+        </div>
+      </div>
+
+      <div class="flex justify-center submit-card">
+        <p-button class="submit-btn" type="submit" label="Add student" />
+      </div>
+    </form>
+  </div>
+<app-studentlist></app-studentlist>
